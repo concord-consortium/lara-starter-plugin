@@ -5,7 +5,7 @@ import { IAuthoredState} from "./types";
 import PluginComponent from "./components/plugin-component";
 
 const authoredState: IAuthoredState = {
-  helloText: "Howdy"
+  helloText: "Hello World"
 };
 
 ReactDOM.render(
