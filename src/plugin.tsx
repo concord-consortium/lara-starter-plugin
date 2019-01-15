@@ -33,16 +33,14 @@ export class TeacherEditionTipsPlugin {
   public renderPluginApp = () => {
     PluginAPI = (window as any).LARA;
     const authoredState = getAuthoredState(this.context);
-    if (PluginAPI.isTeacherEdition()) {
-      this.pluginAppComponent = ReactDOM.render(
-        <PluginApp
-          authoredState={authoredState}
-          wrappedEmbeddableDiv={this.context.wrappedEmbeddableDiv}
-          wrappedEmbeddableContext={this.context.wrappedEmbeddableContext}
-          PluginAPI={PluginAPI}
-        />,
-        this.context.div);
-    }
+    this.pluginAppComponent = ReactDOM.render(
+      <PluginApp
+        authoredState={authoredState}
+        wrappedEmbeddableDiv={this.context.wrappedEmbeddableDiv}
+        wrappedEmbeddableContext={this.context.wrappedEmbeddableContext}
+        PluginAPI={PluginAPI}
+      />,
+      this.context.div);
   }
 }
 

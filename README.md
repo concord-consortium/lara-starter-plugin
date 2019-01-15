@@ -6,6 +6,20 @@ it would be smart to check the
 [current LARA API](https://github.com/concord-consortium/lara/blob/master/app/assets/javascripts/lara-api.js) in the
 [LARA repo](https://github.com/concord-consortium/lara)
 
+To install this plugin in LARA using a local server, login as an admin, and follow
+the top navigation link to 'Plugins' and then create a new one. Set the plugin's
+label to `LaraStarterPlugin` as defined in `plugin-condfig.tsx`.
+
+---
+![adding the plugin](add-plugin.png)
+
+---
+To test it out create a new activity page, and add a new embeddable plugin. Specify
+the new Plugin, and add authoring data JSON like `{ "helloText" : "Hello World" }`
+
+![configuring the plugin](configure-plugin.png)
+
+
 ## Development
 
 ### Initial steps
@@ -50,7 +64,6 @@ To deploy a production release:
 8. Checkout production
 9. Run `git merge master --no-ff`
 10. Push production to GitHub
-11. Use https://github.com/concord-consortium/teacher-edition-tips-plugin/releases to create a new release tag
 
 ### Testing
 
@@ -58,6 +71,6 @@ Run `npm test` to run jest tests. Run `npm run test:full` to run jest and Cypres
 
 ## License
 
-Teacher Edition Tips Plugin are Copyright 2018 (c) by the Concord Consortium and is distributed under the [MIT license](http://www.opensource.org/licenses/MIT).
+This LARA Plugin is Copyright 2018 (c) by the Concord Consortium and is distributed under the [MIT license](http://www.opensource.org/licenses/MIT).
 
 See `LICENSE` for the complete license text.
