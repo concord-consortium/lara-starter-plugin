@@ -1,0 +1,36 @@
+{
+  "name": "Starter Plugin",
+  "label": "starterPlugin",
+  "url": "plugin.js",
+  "version": 3,
+  "description": "Update this description with the real one...",
+  "authoring_metadata": {
+    "components": [
+      {
+        "label": "starter-activity-component",
+        "name": "Starter Activity Level",
+        "scope": "activity",
+        "guiAuthoring": true
+      },
+      {
+        "label": "starter-embeddable-component",
+        "name": "Starter Embeddable Level",
+        "scope": "embeddable",
+        "guiAuthoring": true
+      },
+      {
+        "label": "starter-embeddable-decoration-component",
+        "name": "Starter Embeddable Decoration Level",
+        "scope": "embeddable-decoration",
+        "decorates": [
+          "Embeddable::MultipleChoice",
+          "Embeddable::OpenResponse",
+          "MwInteractive",
+          "ImageInteractive",
+          "VideoInteractive"
+        ],
+        "guiAuthoring": true
+      }
+    ]
+  }
+}
