@@ -3,8 +3,9 @@ import * as ReactDOM from "react-dom";
 import PluginApp from "./components/plugin-app";
 import PluginConfig from "./config/plugin-config";
 import * as PluginAPI from "@concord-consortium/lara-plugin-api";
+import InlineAuthoringForm from "./components/authoring/inline-authoring-form";
 
-const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext) => {
+const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext | PluginAPI.IPluginAuthoringContext) => {
   if (!context.authoredState) {
     return {};
   }
@@ -19,7 +20,7 @@ const getAuthoredState = (context: PluginAPI.IPluginRuntimeContext) => {
   return authoredState;
 };
 
-export class TeacherEditionTipsPlugin {
+export class RuntimePlugin {
   public context: PluginAPI.IPluginRuntimeContext;
   public pluginAppComponent: any;
 
@@ -39,6 +40,27 @@ export class TeacherEditionTipsPlugin {
   }
 }
 
+export class AuthoringPlugin {
+  public context: PluginAPI.IPluginAuthoringContext;
+  public pluginAppComponent: any;
+
+  constructor(context: PluginAPI.IPluginAuthoringContext) {
+    this.context = context;
+    this.renderPluginApp();
+  }
+
+  public renderPluginApp = () => {
+    const authoredState = getAuthoredState(this.context);
+
+    this.pluginAppComponent = ReactDOM.render(
+      <InlineAuthoringForm
+        initialAuthoredState={ authoredState }
+        saveAuthoredPluginState={ this.context.saveAuthoredPluginState }
+      />,
+      this.context.container);
+  }
+}
+
 export const initPlugin = () => {
   const {PluginID, PluginName} = PluginConfig;
   if (!PluginAPI || !PluginAPI.registerPlugin) {
@@ -48,7 +70,10 @@ export const initPlugin = () => {
   }
   // tslint:disable-next-line:no-console
   console.log(`LARA Plugin API available, ${PluginName} initialization`);
-  PluginAPI.registerPlugin(PluginID, TeacherEditionTipsPlugin);
+  PluginAPI.registerPlugin({
+    runtimeClass: RuntimePlugin,
+    authoringClass: AuthoringPlugin
+  });
 };
 
 initPlugin();
